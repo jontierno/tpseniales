@@ -3,14 +3,14 @@
 #Retorna la linea de tiempo utilizada
 
 function answer = printsignal(signal, samplingFrec)
-  duration = (size(signal) / samplingFrec)(2)
+  duration = (length(signal) / samplingFrec);
   timeline = 0:1/samplingFrec:duration - 1/samplingFrec  ;
   figure
-  plot(timeline,signal)
+  plot(timeline,abs(signal))
   T= title ("Intensidad vs Tiempo");
   set (T, "fontsize", 12); 
   xlabel ("tiempo [seg]");
-  ylabel ("Intensidad");
+  ylabel ("Intensidad (módulo)");
   L = legend(strcat(["Intensidad \nDuracion ",num2str(duration)," seg"]));
   set (L, "fontsize", 10); 
   answer = timeline;
