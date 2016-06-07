@@ -80,13 +80,15 @@ title('Espectro vs Frecuencia(ventaneada)');
 
 %% Espectrograma
 %close all;
-w = 256;
-ov = 200;
+
+w = 100;
+ov = round(w*0.80);
 nfft = FRECUENCIA_MUESTREO;
 %figure, spectrogram(filtrada1/max(abs(filtrada1)),w, ov,[], nfft, 'yaxis')
 %no se ve bien la que no es ni recortada ni filtrada
 figure, spectrogram(recortada/max(abs(recortada)),w, ov,[], nfft, 'yaxis')
 axis ([15 20 0.03 0.35]);
+caxis([-40 -30]);
 
 
 
