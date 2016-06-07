@@ -35,14 +35,14 @@ plot(eje_frec,absspect);
 %close all;
 
 senial = ifft(fftshift(spect));
-w = 100;
-ov = round(w*0.80);
+w = 256;
+ov = w*0.;
 nfft = FRECUENCIA_MUESTREO;
 %figure, spectrogram(filtrada1/max(abs(filtrada1)),w, ov,[], nfft, 'yaxis')
 %no se ve bien la que no es ni recortada ni filtrada
 figure, spectrogram(senial/max(abs(senial)),w, ov,[], nfft, 'yaxis')
 axis ([15 20 0.03 0.35]);
-caxis([-70 -30]);
+
 
 %% Grafico lo original
 absspect = abs(spect);
