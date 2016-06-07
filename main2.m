@@ -80,3 +80,8 @@ nfft = FRECUENCIA_MUESTREO;
 %no se ve bien la que no es ni recortada ni filtrada
 figure, spectrogram(recortada/max(abs(filtrada2)),w, ov,[], nfft, 'yaxis')
 axis ([15 20 0.03 0.35]);
+
+
+
+
+
