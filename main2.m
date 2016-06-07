@@ -22,57 +22,64 @@ recortada = filtrada1;
 for K = 1:10*FRECUENCIA_MUESTREO
     recortada(K) =0;
 end
-for K = 22*FRECUENCIA_MUESTREO:length(senial)-1
+for K = 22*FRECUENCIA_MUESTREO:length(senial)
     recortada(K)=0;
 end
 
 
 %saco unos picos que molestan (esto no mejora en nada
 filtrada2 = recortada;
-b = fir1(5000,[300/nyquist 360/nyquist],'stop');
+%b = fir1(5000,[300/nyquist 360/nyquist],'stop');
 %filtrada2 = filter(b,1,filtrada2);
-b = fir1(5000,[10/nyquist 100/nyquist],'stop');
+%b = fir1(5000,[10/nyquist 100/nyquist],'stop');
 %filtrada2 = filter(b,1,filtrada2);
-b = fir1(5000,[175/nyquist 200/nyquist],'stop');
+%b = fir1(5000,[175/nyquist 200/nyquist],'stop');
 %filtrada2 = filter(b,1,filtrada2);
-b = fir1(5000,[330/nyquist 335/nyquist],'stop');
+%b = fir1(5000,[330/nyquist 335/nyquist],'stop');
 %filtrada2 = filter(b,1,filtrada2);
-b = fir1(5000,[304/nyquist 319/nyquist],'stop');
+%b = fir1(5000,[304/nyquist 319/nyquist],'stop');
 %filtrada2 = filter(b,1,filtrada2);
-b = fir1(5000,[58/nyquist 62/nyquist],'stop');
+%b = fir1(5000,[58/nyquist 62/nyquist],'stop');
 %filtrada2 = filter(b,1,filtrada2);
-b = fir1(5000,[178/nyquist 182/nyquist],'stop');
+%b = fir1(5000,[178/nyquist 182/nyquist],'stop');
 %filtrada2 = filter(b,1,filtrada2);
 
 
 
-
+%% Señal en el tiempo%% Señal original
+figure
+subplot(3,1,1), printsignal(senial, FRECUENCIA_MUESTREO);
+title('Intensidad vs Tiempo(original)');
+subplot(3,1,2), printsignal(filtrada1, FRECUENCIA_MUESTREO);
+title('Intensidad vs Tiempo(pasabanda)');
+subplot(3,1,3), printsignal(recortada, FRECUENCIA_MUESTREO);
+title('Intensidad vs Tiempo(ventaneada)');
 
 %% Espectros
 
-
-close all;
-subplot(2,2,1), printspect(senial, FRECUENCIA_MUESTREO); 
+%close all;
+figure
+subplot(3,1,1), printspect(senial, FRECUENCIA_MUESTREO); 
 title('Espectro vs Frecuencia(original)');
 
 
 %dibujo el espectro de la filtrada1
-subplot(2,2,2), printspect(filtrada1, FRECUENCIA_MUESTREO); 
+subplot(3,1,2), printspect(filtrada1, FRECUENCIA_MUESTREO); 
 title('Espectro vs Frecuencia(pasabanda)');
 
 %dibujo el espectro de la recortada
-subplot(2,2,3), printspect(recortada, FRECUENCIA_MUESTREO); 
+subplot(3,1,3), printspect(recortada, FRECUENCIA_MUESTREO); 
 title('Espectro vs Frecuencia(ventaneada)');
 
 %dibujo el espectro de la filtrada2
-subplot(2,2,4), printspect(filtrada2, FRECUENCIA_MUESTREO); 
-title('Espectro vs Frecuencia(notchs)');
+%subplot(2,2,4), printspect(filtrada2, FRECUENCIA_MUESTREO); 
+%title('Espectro vs Frecuencia(notchs)');
 
 
 
 
 %% Espectrograma
-close all;
+%close all;
 w = 256;
 ov = 200;
 nfft = FRECUENCIA_MUESTREO;

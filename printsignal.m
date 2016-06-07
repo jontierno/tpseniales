@@ -5,7 +5,6 @@
 function answer = printsignal(signal, samplingFrec)
   duration = (length(signal) / samplingFrec);
   timeline = 0:1/samplingFrec:duration - 1/samplingFrec  ;
-  figure
   plot(timeline,abs(signal))
   T= title ('Intensidad vs Tiempo');
   set (T, 'fontsize', 12); 
