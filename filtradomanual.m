@@ -4,7 +4,7 @@
 %paso un pasabanda donde esta la señal
 b = fir1(ORDEN_FILTRO,[35/FREC_NYQUIST 350/FREC_NYQUIST]);
 senial_con_pasabanda = filter(b,1,SENIAL_SIN_CONTINUA);
-senial_con_pasabanda = senial_con_pasabanda(round((ORDEN_FILTRO-1)/2):...
+senial_con_pasabanda = senial_con_pasabanda((ORDEN_FILTRO-1) /2:...
     length(senial_con_pasabanda));
 %la ventaneo
 senial_manual = senial_con_pasabanda;
