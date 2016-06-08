@@ -22,8 +22,8 @@ frecuencias = detectarPicos(espectro, UMBRAL_FILTRO_AUTOMATICO, ...
      
      % como el fir1 es un filtro de retardo de grupo constante, puedo
      % acomodar el delay de la senial filtrada (retardo= (orden -1) /2
-%      filtrada_automatica = filtrada_automatica(round((ORDEN_FILTRO-1) /2):...
-%          length(filtrada_automatica));
+      filtrada_automatica = filtrada_automatica(round((ORDEN_FILTRO-1) /2):...
+          length(filtrada_automatica));
  end;
 
 %% GRAFICO DE ESPECTRO

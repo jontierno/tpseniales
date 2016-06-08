@@ -16,3 +16,8 @@ clear all, close all;
 init4k;
 init16k;
 filtradoautomatico;
+
+%% CORRELACIONAR AMBAS
+clear all, close all;
+inkt4k;
+correlacionar;

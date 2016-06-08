@@ -8,7 +8,7 @@ b = fir1(100, 4096/FREC_NYQUIST_16);
 filtrada = filter(b,1,senial_16);
 
 UMBRAL_FILTRO_AUTOMATICO = 1e-17;
-ORDEN_FILTRO = 500;
+ORDEN_FILTRO = 5000;
 % esto es lo mismo que tirar 1 de cuatro muestras.
 SENIAL_SIN_CONTINUA = downsample(filtrada, 4);
 ESPECTRO_SENIAL_SIN_CONTINUA = fft(SENIAL_SIN_CONTINUA);
