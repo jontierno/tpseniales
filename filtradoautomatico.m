@@ -31,7 +31,8 @@ frecuencias = detectarPicos(espectro, UMBRAL_FILTRO_AUTOMATICO, ...
 % Dibujo el espectro con los filtros y marco los filtros.
 maximo = max(abs(ESPECTRO_SENIAL_SIN_CONTINUA));
 figure
-subplot(2,1,1), printspect(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO); 
+subplot(2,1,1), imprimirTransformada(SENIAL_SIN_CONTINUA,...
+    FRECUENCIA_MUESTREO); 
 title('Espectro Original');
 
 hold on;
@@ -45,7 +46,8 @@ end;
 
 hold off;
 axis([-inf,inf,-inf,maximo*1.1]);
-subplot(2,1,2), printspect(filtrada_automatica, FRECUENCIA_MUESTREO); 
+subplot(2,1,2), imprimirTransformada(filtrada_automatica, ...
+    FRECUENCIA_MUESTREO); 
 title('Espectro Filtrado');
 
 
@@ -53,13 +55,15 @@ title('Espectro Filtrado');
 
 window_size = 100;
 overlap = round(window_size*0.80);
+% TOMO UN VALOR ALTO PARA QUE NO PIXELE
+nfft = 4000;
 figure, spectrogram(filtrada_automatica/max(abs(filtrada_automatica)), ... 
-    window_size, overlap,[], FRECUENCIA_MUESTREO, 'yaxis');
+    window_size, overlap,nfft, FRECUENCIA_MUESTREO, 'yaxis');
 axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
     FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
 caxis([-70 -60]);
 colormap('bone');
-title('Espectrograma senial filtrada.');
+title('Espectrograma senial filtrada');
 
 
 %% GRAFICO DE LA SENIAL;
