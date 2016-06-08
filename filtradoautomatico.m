@@ -22,8 +22,8 @@ frecuencias = detectarPicos(espectro, UMBRAL_FILTRO_AUTOMATICO, ...
      
      % como el fir1 es un filtro de retardo de grupo constante, puedo
      % acomodar el delay de la senial filtrada (retardo= (orden -1) /2
-     filtrada_automatica = filtrada_automatica(ORDEN_FILTRO*2:...
-         length(filtrada_automatica));
+%      filtrada_automatica = filtrada_automatica(round((ORDEN_FILTRO-1) /2):...
+%          length(filtrada_automatica));
  end;
 
 %% GRAFICO DE ESPECTRO
@@ -59,11 +59,11 @@ overlap = round(window_size*0.80);
 nfft = 4000;
 figure, spectrogram(filtrada_automatica/max(abs(filtrada_automatica)), ... 
     window_size, overlap,nfft, FRECUENCIA_MUESTREO, 'yaxis');
-axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
-    FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
+% axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
+%     FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
 caxis([-70 -60]);
 colormap('bone');
-title('Espectrograma senial filtrada');
+title('Espectrograma Señal filtrada');
 
 
 %% GRAFICO DE LA SENIAL;

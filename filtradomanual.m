@@ -4,7 +4,7 @@
 %paso un pasabanda donde esta la señal
 b = fir1(ORDEN_FILTRO,[35/FREC_NYQUIST 350/FREC_NYQUIST]);
 senial_con_pasabanda = filter(b,1,SENIAL_SIN_CONTINUA);
-senial_con_pasabanda = senial_con_pasabanda((ORDEN_FILTRO-1) /2:...
+senial_con_pasabanda = senial_con_pasabanda(round((ORDEN_FILTRO-1) /2):...
     length(senial_con_pasabanda));
 %la ventaneo
 senial_manual = senial_con_pasabanda;
@@ -37,11 +37,11 @@ overlap = round(window_size*0.80);
 nfft = 4000;
 figure, spectrogram(senial_manual/max(abs(senial_manual)), window_size,...
     overlap, nfft, FRECUENCIA_MUESTREO, 'yaxis')
-axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
-    FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
+%axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
+%    FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
 caxis([-40 -30]);
 colormap('bone');
-title('Espectrograma senial filtrada');
+title('Espectrograma Señal filtrada');
 
 %% GRAFICO DE LA SENIAL;
 figure;
