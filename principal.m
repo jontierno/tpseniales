@@ -60,7 +60,7 @@ figure, spectrogram(senial_manual/max(abs(senial_manual)), window_size,...
 axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
     FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
 caxis([-40 -30]);
-
+colormap('bone');
 
 %% FILTRADO AUTOMATICO.
 
@@ -119,5 +119,5 @@ figure, spectrogram(filtrada_automatica/max(abs(filtrada_automatica)), ...
     window_size, overlap,[], FRECUENCIA_MUESTREO, 'yaxis');
 axis ([15 20 0.03 0.35]);
 caxis([-70 -60]);
-
+colormap('bone');
 
