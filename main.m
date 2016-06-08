@@ -11,7 +11,7 @@ N = length(senial);
 senial = senial - mean(senial);
 
 %DIBUJO LA SEÑAL EN FUNCION DEL TIEMPO
-%timeline = printsignal(senial, FRECUENCIA_MUESTREO);
+timeline = printsignal(senial, FRECUENCIA_MUESTREO);
 
 
 

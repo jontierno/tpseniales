@@ -16,7 +16,6 @@ senial = senial - mean(senial);
 b = fir1(5000,[35/nyquist 350/nyquist]);
 filtrada1 = filter(b,1,senial);
 
-%filtrada2=filtrada1
 %la ventaneo
 recortada = filtrada1;
 for K = 1:10*FRECUENCIA_MUESTREO
@@ -26,23 +25,8 @@ for K = 22*FRECUENCIA_MUESTREO:length(senial)
     recortada(K)=0;
 end
 
-
-%saco unos picos que molestan (esto no mejora en nada
 filtrada2 = recortada;
-%b = fir1(5000,[300/nyquist 360/nyquist],'stop');
-%filtrada2 = filter(b,1,filtrada2);
-%b = fir1(5000,[10/nyquist 100/nyquist],'stop');
-%filtrada2 = filter(b,1,filtrada2);
-%b = fir1(5000,[175/nyquist 200/nyquist],'stop');
-%filtrada2 = filter(b,1,filtrada2);
-%b = fir1(5000,[330/nyquist 335/nyquist],'stop');
-%filtrada2 = filter(b,1,filtrada2);
-%b = fir1(5000,[304/nyquist 319/nyquist],'stop');
-%filtrada2 = filter(b,1,filtrada2);
-%b = fir1(5000,[58/nyquist 62/nyquist],'stop');
-%filtrada2 = filter(b,1,filtrada2);
-%b = fir1(5000,[178/nyquist 182/nyquist],'stop');
-%filtrada2 = filter(b,1,filtrada2);
+
 
 
 
@@ -71,10 +55,6 @@ title('Espectro vs Frecuencia(pasabanda)');
 subplot(3,1,3), printspect(recortada, FRECUENCIA_MUESTREO); 
 title('Espectro vs Frecuencia(ventaneada)');
 
-%dibujo el espectro de la filtrada2
-%subplot(2,2,4), printspect(filtrada2, FRECUENCIA_MUESTREO); 
-%title('Espectro vs Frecuencia(notchs)');
-
 
 
 
@@ -86,7 +66,7 @@ ov = round(w*0.80);
 nfft = FRECUENCIA_MUESTREO;
 %figure, spectrogram(filtrada1/max(abs(filtrada1)),w, ov,[], nfft, 'yaxis')
 %no se ve bien la que no es ni recortada ni filtrada
-figure, spectrogram(recortada/max(abs(recortada)),w, ov,[], nfft, 'yaxis')
+figure, spectrogram(recortada/max(abs(recortada)),w, ov,FRECUENCIA_MUESTREO, nfft, 'yaxis')
 axis ([15 20 0.03 0.35]);
 caxis([-40 -30]);
 

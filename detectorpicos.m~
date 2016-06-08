@@ -9,6 +9,7 @@ NFFT = length(senial);
 
 
 spect = fft(senial);
+spect = senial(1:NFFT/2);
 absspect = abs(spect);
 eje_frec = linspace(-FRECUENCIA_MUESTREO/2, FRECUENCIA_MUESTREO/2, NFFT);
 
@@ -18,10 +19,10 @@ close all;
 %Parametros iniciales
 UMBRAL = 1e-17;
 %UMBRAL = max(absspect)*0.2;
-ANCHO_FILTRO = 250;
+ANCHO_FILTRO = 200;
 ORDEN_FILTRO = 5000;
 %ME QUEDO SOLO CON LA MITAD DEL ESPECTRO, EL RESTO SE REPITE
-absspect =  absspect(1:NFFT/2);
+% absspect =  absspect(1:NFFT/2);
 
 
 picos = absspect > UMBRAL;
@@ -32,16 +33,12 @@ picos = picos >= 1;
 indicadores = diff(picos);
 
 frecuencias = [];
-for k = 1:length(indicadores)
+for k = 1:length(indicadores)/2
     if indicadores(k) == 1
         start = k;
     end
     if indicadores(k) == -1
-        start = start - 1 *NFFT/FRECUENCIA_MUESTREO;
-        if start < 0
-            start = 0.01 *NFFT/FRECUENCIA_MUESTREO;
-        end
-        frecuencias = [frecuencias; [start k]* FRECUENCIA_MUESTREO/NFFT];
+        frecuencias = [frecuencias; [start - round(start *0.05) k + round(k *0.05)]* FRECUENCIA_MUESTREO/NFFT];
     end
 end;
 
