@@ -78,7 +78,7 @@ title('Espectro Filtrado');
 w = 100;
 ov = round(w*0.80);
 figure, spectrogram(filtrada/max(abs(filtrada)),w, ov,[], FRECUENCIA_MUESTREO, 'yaxis')
-% axis ([15 20 0.03 0.35]);
+axis ([15 20 0.03 0.35]);
 %caxis([-60 -10]);
 
 

@@ -15,7 +15,7 @@ senial = senial - mean(senial);
 %paso un pasabanda 35-350
 b = fir1(5000,[35/nyquist 350/nyquist]);
 filtrada1 = filter(b,1,senial);
-
+filtrada1 = filtrada1(round((5000-1)/2): length(filtrada1));
 %la ventaneo
 recortada = filtrada1;
 for K = 1:10*FRECUENCIA_MUESTREO
