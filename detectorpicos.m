@@ -10,7 +10,7 @@ NFFT = length(senial);
 
 spect = fft(senial);
 absspect = abs(spect);
-eje_frec = linspace(-FRECUENCIA_MUESTREO/2, FRECUENCIA_MUESTREO/2, NFFT);
+
 
 
 %% Detecto los tonos
