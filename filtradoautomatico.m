@@ -55,6 +55,14 @@ window_size = 100;
 overlap = round(window_size*0.80);
 figure, spectrogram(filtrada_automatica/max(abs(filtrada_automatica)), ... 
     window_size, overlap,[], FRECUENCIA_MUESTREO, 'yaxis');
-axis ([15 20 0.03 0.35]);
+axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
+    FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
 caxis([-70 -60]);
 colormap('bone');
+title('Espectrograma senial filtrada.');
+
+
+%% GRAFICO DE LA SENIAL;
+figure;
+subplot(2,1,1), imprimirSenial(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO);
+subplot(2,1,2), imprimirSenial(filtrada_automatica, FRECUENCIA_MUESTREO);

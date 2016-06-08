@@ -40,3 +40,11 @@ axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
     FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
 caxis([-40 -30]);
 colormap('bone');
+title('Espectrograma senial filtrada.');
+
+%% GRAFICO DE LA SENIAL;
+figure;
+subplot(2,1,1), imprimirSenial(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO);
+title('Señal original');
+subplot(2,1,2), imprimirSenial(senial_manual, FRECUENCIA_MUESTREO);
+title('Señal retocada');
