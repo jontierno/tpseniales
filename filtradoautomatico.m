@@ -50,6 +50,10 @@ subplot(2,1,2), imprimirTransformada(filtrada_automatica, ...
     FRECUENCIA_MUESTREO); 
 title('Espectro Filtrado');
 
+%% GRAFICO DE LA SENIAL;
+figure;
+subplot(2,1,1), imprimirSenial(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO);
+subplot(2,1,2), imprimirSenial(filtrada_automatica, FRECUENCIA_MUESTREO);
 
 %% ESPECTROGRAMA
 
@@ -63,7 +67,4 @@ colormap(ESPECTRO_COLORMAP);
 title('Espectrograma Señal filtrada');
 
 
-%% GRAFICO DE LA SENIAL;
-figure;
-subplot(2,1,1), imprimirSenial(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO);
-subplot(2,1,2), imprimirSenial(filtrada_automatica, FRECUENCIA_MUESTREO);
+
