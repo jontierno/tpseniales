@@ -32,7 +32,7 @@ figure
 subplot(2,1,1),imprimirTransformada(SENIAL_ORIGINAL, FRECUENCIA_MUESTREO);
 subplot(2,1,2),imprimirTransformada(filtrada, FRECUENCIA_MUESTREO);
 
-SEG_INICIO=2;
+SEG_INICIO=0.5;
 SEG_FIN = 25;
 
 FREC_INI = 35;
@@ -69,8 +69,3 @@ y = chirp(t,FREC_INI, pendpos,FREC_FIN, 'linear');
 figure, plot(lags/FRECUENCIA_MUESTREO + SEG_INICIO,xCorr);
  grid
  axis tight;
-%% PRUEBA
-t = 0:1/FRECUENCIA_MUESTREO:0.025;
-y = chirp(t,100, 0.01,200);
-%figure, iprimirTransformada(y,  FRECUENCIA_MUESTREO);
-figure,  spectrogram(y,blackman(length(t)), length(t)*0.99,length(t)*3, FRECUENCIA_MUESTREO, 'yaxis');
