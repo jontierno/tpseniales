@@ -30,17 +30,13 @@ title('Espectro vs Frecuencia(Pasabanda y Recortada en tiempo)');
 
 %% ESPECTROGRAMA
 
-window_size = 100;
-overlap = round(window_size*0.80);
-
-% TOMO UN VALOR ALTO PARA QUE NO PIXELE
-nfft = 4000;
-figure, spectrogram(senial_manual/max(abs(senial_manual)), window_size,...
-    overlap, nfft, FRECUENCIA_MUESTREO, 'yaxis')
+figure, spectrogram(senial_manual/max(abs(senial_manual)), ... 
+    ESPECTRO_WINDOW, ESPECTRO_OVERLAP,ESPECTRO_NFFT, ...
+        FRECUENCIA_MUESTREO, 'yaxis');
 %axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
 %    FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
 caxis([-40 -30]);
-colormap('bone');
+colormap(ESPECTRO_COLORMAP);
 title('Espectrograma Señal filtrada');
 
 %% GRAFICO DE LA SENIAL;

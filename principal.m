@@ -19,5 +19,5 @@ filtradoautomatico;
 
 %% CORRELACIONAR AMBAS
 clear all, close all;
-inkt4k;
+init4k;
 correlacionar;
