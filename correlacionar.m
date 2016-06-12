@@ -28,9 +28,6 @@ colormap(ESPECTRO_COLORMAP);
 
 %% CORRELACIONO
 close all;
-figure
-subplot(2,1,1),imprimirTransformada(SENIAL_ORIGINAL, FRECUENCIA_MUESTREO);
-subplot(2,1,2),imprimirTransformada(filtrada, FRECUENCIA_MUESTREO);
 
 SEG_INICIO=0.5;
 SEG_FIN = 25;

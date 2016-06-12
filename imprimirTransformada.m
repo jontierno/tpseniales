@@ -9,7 +9,7 @@ function imprimirTransformada(senial, samplingFrec)
    plot(eje_frec,abs(spect));
     T= title ('Transformada vs Frecuencia');
     set (T, 'fontsize', 12); 
-    xlabel ('frecuencia [Hz]');
-    ylabel ('espectro (módulo)');
+    xlabel ('Frecuencia [Hz]');
+    ylabel ('Espectro (módulo)');
    
 end
