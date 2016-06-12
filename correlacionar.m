@@ -52,17 +52,33 @@ xm = filtrada(INICIO_CORR:end);
 t = 0:1/FRECUENCIA_MUESTREO:LONGI_SENIAL;
 y = chirp(t,FREC_INI, pendpos,FREC_FIN, 'linear');
 
-% figure, imprimirSenial(y,FRECUENCIA_MUESTREO);
+figure;
+subplot(2,1,1), imprimirSenial(y,FRECUENCIA_MUESTREO);
+title('Chirp');
 
-%figure,  spectrogram(y,VENTANA, VENTANA*0.9,1000, FRECUENCIA_MUESTREO, 'yaxis');
-%  axis ([TIEMPO_INICIAL_SENIAL*0.8 TIEMPO_FINAL_SENIAL*1.2 ...
-%      FREC_INICIAL_SENIAL*0.8/1000 FREC_FINAL_SENIAL*1.2/1000]);
-%colormap(ESPECTRO_COLORMAP);
-% figure, imprimirTransformada(y, ...
-%     FRECUENCIA_MUESTREO); 
+subplot(2,1,2), imprimirTransformada(y, ...
+     FRECUENCIA_MUESTREO); 
+ title('Espectro de la Chirp');
 [xCorr, lags] = xcorr(xm,y);
+
+
 
 
 figure, plot(lags/FRECUENCIA_MUESTREO + SEG_INICIO,xCorr);
  grid
- axis tight;
+axis([1 inf -inf inf]);
+ 
+ 
+ %% Imprimir chirp sobre la señal.
+ 
+    [~,I] = max(abs(xCorr));
+    maxt = lags(I);
+    Trial = NaN(size(xm));
+    Trial(maxt+1:maxt+length(y)) = xm(maxt+1:maxt+length(y));
+   duration = (length(xm) / FRECUENCIA_MUESTREO);
+   timeline = 0:1/FRECUENCIA_MUESTREO:duration - 1/FRECUENCIA_MUESTREO; 
+   plot(timeline + SEG_INICIO, xm, timeline+SEG_INICIO,Trial);
+   axis([16.4 16.5 -inf inf]);
+   title('Señal original y Chirp');
+   ylabel('Intensidad');
+   xlabel('Tiempo [seg]');
