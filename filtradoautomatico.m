@@ -20,11 +20,12 @@ frecuencias = detectarPicos(espectro, UMBRAL_FILTRO_AUTOMATICO, ...
      
      b = fir1(ORDEN_FILTRO,frecs,'stop');
      % filtro notch
+     filtrada_automatica = padarray(filtrada_automatica,desplazamiento,'post');
      filtrada_automatica= filter(b,1,filtrada_automatica);
      
      % como el fir1 es un filtro de retardo de grupo constante, puedo
      % acomodar el delay de la senial filtrada (retardo= orden /2)
-      filtrada_automatica = filtrada_automatica(desplazamiento:end);
+      filtrada_automatica = filtrada_automatica(desplazamiento+1:end);
 
       
  end;
