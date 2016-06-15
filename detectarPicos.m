@@ -4,7 +4,7 @@ function [ frecuencias] = detectarPicos(espectro, umbral, fs, nfft )
 
 
 absespect = abs(espectro);
-ANCHO_FILTRO = 250;
+ANCHO_FILTRO = 450;
 filtro = ones(1, ANCHO_FILTRO);
 
 
@@ -18,23 +18,29 @@ picos = picos >= 1;
 
 % donde tome 1 empieza un pico, y donde tenga -1 termina un pico.
 indicadores = diff(picos);
-
+startk =0;
 frecuencias = [];
 for k = 1:length(indicadores)
     if indicadores(k) == 1
-        start = k;
+        startk = k;
     end
     if indicadores(k) == -1
         % el inicio esta justo donde arranca el pico, tengo que empezar un
         % poco antes, 1 hertz
-        start = start - 1 * nfft/fs;
+        startk = startk - 10 * nfft/fs;
         % pero si me fui a negativo, esto falla, voy a 1/100 hertz
-        if start < 0
-            start = 0.01 *nfft/fs;
+        if startk <= 0
+            startk = 0.01 *nfft/fs;
         end
-        frecuencias = [frecuencias; [start k]* fs/nfft];
+        if isempty(frecuencias) == false  && frecuencias(end) > startk * fs/nfft
+            frecuencias(end) = k* fs/nfft;
+        else    
+            frecuencias = [frecuencias; [startk k]* fs/nfft];
     end
 end;
+
+
+
 
 end
 

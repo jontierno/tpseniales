@@ -27,7 +27,7 @@ clear all, close all;
 init4k;
 init16k;
 graficarfiltradoaut;
-caxis([-82 -40]);
+%caxis([-82 -40]);
 %% CORRELACIONAR AMBAS
 clear all, close all;
 init4k;

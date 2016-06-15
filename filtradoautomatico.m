@@ -4,8 +4,7 @@
 % PARA BUSCAR LOS FILTROS
 
 % me quedo solo con la mitad del espectro
-espectro =  ESPECTRO_SENIAL_SIN_CONTINUA(1:...
-    length(ESPECTRO_SENIAL_SIN_CONTINUA)/2);
+espectro =  ESPECTRO_SENIAL_SIN_CONTINUA(1:round(length(ESPECTRO_SENIAL_SIN_CONTINUA)/2));
 
 % paso el umbral para obtener los picos, la frecuencia de muestreo, y con
 % cuantos puntos se hace la fft
@@ -14,18 +13,22 @@ frecuencias = detectarPicos(espectro, UMBRAL_FILTRO_AUTOMATICO, ...
 
 
  filtrada_automatica = SENIAL_SIN_CONTINUA;
+ frecs = [];
  for k = 1:length(frecuencias)
-     b = fir1(ORDEN_FILTRO,[frecuencias(k,1)/FREC_NYQUIST ...
-         frecuencias(k,2)/FREC_NYQUIST],'stop');
-     % filtro notch
-     filtrada_automatica= filter(b,1,filtrada_automatica);
+     frecs = [frecs frecuencias(k,1)/FREC_NYQUIST frecuencias(k,2)/FREC_NYQUIST];
+     
      
      % como el fir1 es un filtro de retardo de grupo constante, puedo
      % acomodar el delay de la senial filtrada (retardo= (orden -1) /2
-      filtrada_automatica = filtrada_automatica(round((ORDEN_FILTRO-1) /2):...
-          length(filtrada_automatica));
+      
  end;
 
+      b = fir1(ORDEN_FILTRO,frecs,'stop');
+     % filtro notch
+     filtrada_automatica= filter(b,1,filtrada_automatica);
+
+     
+ filtrada_automatica = filtrada_automatica(ORDEN_FILTRO /2:end);
 
 
 
