@@ -10,8 +10,10 @@ title('Señal original');
 figure, imprimirTransformada(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO)
 title('Espectro de la Señal original');
 
-figure, figure, spectrogram(SENIAL_SIN_CONTINUA/max(abs(SENIAL_SIN_CONTINUA)), ... 
+figure, spectrogram(SENIAL_SIN_CONTINUA/max(abs(SENIAL_SIN_CONTINUA)), ... 
     ESPECTRO_WINDOW, ESPECTRO_OVERLAP,ESPECTRO_NFFT, FRECUENCIA_MUESTREO, 'yaxis');
+colormap(ESPECTRO_COLORMAP);
+axis([-inf inf 0 0.35]);
 %% FILTRADO MANUL
 clear all, close all;
 init4k;

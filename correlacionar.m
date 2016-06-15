@@ -46,6 +46,7 @@ y = chirp(t,FREC_INI, pendpos,FREC_FIN, 'linear');
 
 figure;
 subplot(2,1,1), imprimirSenial(y,FRECUENCIA_MUESTREO);
+legend('Diración 20ms')
 title('Chirp');
 
 subplot(2,1,2), imprimirTransformada(y, ...
