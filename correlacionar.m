@@ -34,14 +34,14 @@ SEG_FIN = 25;
 FREC_INI = 35;
 FREC_FIN = 350;
 pendpos=0.02;
-LONGI_SENIAL= 0.02;
+LONG_CHIRP= 0.02;
 
 
 INICIO_CORR = SEG_INICIO * FRECUENCIA_MUESTREO;
 xm = filtrada(INICIO_CORR:end);
 
 
-t = 0:1/FRECUENCIA_MUESTREO:LONGI_SENIAL;
+t = 0:1/FRECUENCIA_MUESTREO:LONG_CHIRP;
 y = chirp(t,FREC_INI, pendpos,FREC_FIN, 'linear');
 
 figure;
@@ -72,15 +72,17 @@ title('Correlación');
     %me armo una señal de la longitud de la señal original
     Trial = NaN(size(xm));
     %le seteo el fragmento de la señal donde esta la chirp
-    Trial(maxt+1:maxt+length(y)) = xm(maxt+1:maxt+length(y));
-   
+    %Trial(maxt+1:maxt+length(y)) = xm(maxt+1:maxt+length(y));
+    Trial(maxt+1:maxt+length(y)) = y * max (xm);
     %ajusto la linea de tiempo
    duracion = (length(xm) / FRECUENCIA_MUESTREO);
    timeline = 0:1/FRECUENCIA_MUESTREO:duracion - 1/FRECUENCIA_MUESTREO; 
    
    figure, plot(timeline + SEG_INICIO, xm, timeline+SEG_INICIO,Trial);
    %hago zoom donde la espero.
-   axis([16.4 16.5 -inf inf]);
+   xaxis_i = (maxt - 2*length(y))/FRECUENCIA_MUESTREO + SEG_INICIO;
+   xaxis_f = (maxt + 2*length(y))/FRECUENCIA_MUESTREO + SEG_INICIO;
+   axis([xaxis_i xaxis_f -inf inf]);
    title('Señal y Chirp');
    ylabel('Intensidad');
    xlabel('Tiempo [seg]');

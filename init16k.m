@@ -6,7 +6,7 @@ FRECUENCIA_MUESTREO_16 = 4096 *4;
 FREC_NYQUIST_16 = FRECUENCIA_MUESTREO_16/2;
 
 
-b = fir1(ORDEN_FILTRO, 2048/FREC_NYQUIST_16);
+b = fir1(ORDEN_FILTRO, 1/4);
 filtrada = filter(b,1,senial_16);
 filtrada = filtrada(ORDEN_FILTRO/2:end);
 SENIAL_SIN_CONTINUA = filtrada(1:4:end);

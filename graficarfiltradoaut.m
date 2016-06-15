@@ -39,7 +39,7 @@ figure, spectrogram(filtrada_automatica/max(abs(filtrada_automatica)), ...
         FRECUENCIA_MUESTREO, 'yaxis');
 % axis ([TIEMPO_INICIAL_SENIAL TIEMPO_FINAL_SENIAL ...
 %     FREC_INICIAL_SENIAL/1000 FREC_FINAL_SENIAL/1000]);
-caxis([-74 -65]);
+caxis([-70 -60]);
 colormap(ESPECTRO_COLORMAP);
 title('Espectrograma Señal filtrada');
 xlabel('Tiempo [seg]');
