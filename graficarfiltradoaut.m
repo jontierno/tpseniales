@@ -12,12 +12,13 @@ subplot(2,1,1), imprimirTransformada(SENIAL_SIN_CONTINUA,...
 title('Espectro Original');
 
 hold on;
-for k = 1:length(frecuencias)
-    yaxis = [0, 1];
+yaxis = [0, 1];
+for k = 1:2:length(frecuencias)
+
     subplot(2,1,1)
     colorgr  = rand(1,3);
-    plot([frecuencias(k,1) frecuencias(k,1)],yaxis,'--','color',colorgr);
-    plot([frecuencias(k,2) frecuencias(k,2)],yaxis,'--', 'color',colorgr);
+    plot([frecuencias(k) frecuencias(k)],yaxis,'--','color',colorgr);
+    plot([frecuencias(k+1) frecuencias(k+1)],yaxis,'--', 'color',colorgr);
 end;
 
 hold off;

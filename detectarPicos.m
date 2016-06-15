@@ -34,8 +34,8 @@ for k = 1:length(indicadores)
         end
         if isempty(frecuencias) == false  && frecuencias(end) > startk * fs/nfft
             frecuencias(end) = k* fs/nfft;
-        else    
-            frecuencias = [frecuencias; [startk k]* fs/nfft];
+        else
+            frecuencias = [frecuencias [startk k]*fs/nfft];
     end
 end;
 
