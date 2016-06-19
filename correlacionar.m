@@ -41,16 +41,18 @@ INICIO_CORR = SEG_INICIO * FRECUENCIA_MUESTREO;
 xm = filtrada(INICIO_CORR:end);
 
 
-t = 0:1/FRECUENCIA_MUESTREO:LONG_CHIRP;
+t = 0:1/FRECUENCIA_MUESTREO:0.025;
 y = chirp(t,FREC_INI, pendpos,FREC_FIN, 'linear');
 
+
+yext= padarray(transpose(y), 4096, 'post');
 figure;
 subplot(2,1,1), imprimirSenial(y,FRECUENCIA_MUESTREO);
 legend('Diración 20ms')
 title('Chirp');
 
-subplot(2,1,2), imprimirTransformada(y, ...
-     FRECUENCIA_MUESTREO); 
+subplot(2,1,2), imprimirTransformada(yext, ...
+     FRECUENCIA_MUESTREO,0); 
  title('Espectro de la Chirp');
 [xCorr, lags] = xcorr(xm,y);
 

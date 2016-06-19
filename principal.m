@@ -7,9 +7,9 @@ init4k;
 figure, imprimirSenial(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO)
 title('Señal original');
 
-figure, imprimirTransformada(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO)
+figure, imprimirTransformada(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO,1)
 title('Espectro de la Señal original');
-
+axis([-inf inf 1e-20 inf]);
 figure, spectrogram(SENIAL_SIN_CONTINUA/max(abs(SENIAL_SIN_CONTINUA)), ... 
     ESPECTRO_WINDOW, ESPECTRO_OVERLAP,ESPECTRO_NFFT, FRECUENCIA_MUESTREO, 'yaxis');
 colormap(ESPECTRO_COLORMAP);
