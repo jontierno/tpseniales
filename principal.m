@@ -14,7 +14,7 @@ figure, spectrogram(SENIAL_SIN_CONTINUA/max(abs(SENIAL_SIN_CONTINUA)), ...
     ESPECTRO_WINDOW, ESPECTRO_OVERLAP,ESPECTRO_NFFT, FRECUENCIA_MUESTREO, 'yaxis');
 colormap(ESPECTRO_COLORMAP);
 axis([-inf inf 0 0.35]);
-%% FILTRADO MANUL
+%% FILTRADO MANUAL
 clear all, close all;
 init4k;
 filtradomanual;
@@ -28,7 +28,9 @@ graficarfiltradoaut;
 clear all, close all;
 init4k;
 init16k;
+graficossubmuestreo;
 graficarfiltradoaut;
+
 caxis([-72 -63]);
 %% CORRELACIONAR AMBAS
 clear all, close all;
