@@ -29,16 +29,17 @@ title('Espectro Filtrado');
 axis([-100 2100 1e-19 inf])
 %% GRAFICO DE LA SENIAL;
 figure;
-segini = 16.41;
+segini = 16.39;
+segfin = 16.44;
 inicio = floor(segini*FRECUENCIA_MUESTREO);
-fin = floor(16.44*FRECUENCIA_MUESTREO);
+fin = floor(segfin*FRECUENCIA_MUESTREO);
 
 secc= inicio:fin;
 
 gca = subplot(1,1,1);
 imprimirSenial(filtrada_automatica(secc), FRECUENCIA_MUESTREO);
 title('Señal Filtrada');
-ticks = 0:1/100:0.06;
+ticks = 0:1/100:(segfin-segini);
 set(gca,'XTick',ticks );
 set(gca,'XTickLabel',ticks+ segini);
 axis([-inf inf -inf inf]);
@@ -79,8 +80,8 @@ hold on;
 yaxis = [0, 1];
 plot([16.40 16.40],yaxis,'--','color', [0 1 0],'LineWidth',1);
 plot([16.42 16.42],yaxis,'--','color', [0 1 0],'LineWidth',1);
-text(16.40,0.2,'\leftarrow 16.40','color', [0 1 0]);
-text(16.42,0.2,'\leftarrow 16.42','color', [0 1 0]);
+text(16.40,0.05,'\leftarrow 16.40','color', [0 1 0]);
+text(16.42,0.05,'\leftarrow 16.42','color', [0 1 0]);
 title('Espectrograma Señal filtrada');
 ylabel('Frecuencia [KHz]');
 xlabel('Tiempo [seg]');
