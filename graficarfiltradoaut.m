@@ -29,11 +29,28 @@ title('Espectro Filtrado');
 axis([-100 2100 1e-19 inf])
 %% GRAFICO DE LA SENIAL;
 figure;
-subplot(2,1,1), imprimirSenial(SENIAL_SIN_CONTINUA, FRECUENCIA_MUESTREO);
-title('Señal Original');
+segini = 16.41;
+inicio = floor(segini*FRECUENCIA_MUESTREO);
+fin = floor(16.44*FRECUENCIA_MUESTREO);
 
-subplot(2,1,2), imprimirSenial(filtrada_automatica, FRECUENCIA_MUESTREO);
+secc= inicio:fin;
+
+gca = subplot(1,1,1);
+imprimirSenial(filtrada_automatica(secc), FRECUENCIA_MUESTREO);
 title('Señal Filtrada');
+ticks = 0:1/100:0.06;
+set(gca,'XTick',ticks );
+set(gca,'XTickLabel',ticks+ segini);
+axis([-inf inf -inf inf]);
+L = legend('Señal Filtrada');
+
+
+%% Espectro de la filtrada con zoom
+figure, imprimirTransformada(filtrada_automatica, ...
+    FRECUENCIA_MUESTREO,0); 
+title('Espectro Filtrado');
+axis([20 370 0 1e-16])
+
 %% ESPECTROGRAMA
 
 figure, spectrogram(filtrada_automatica/max(abs(filtrada_automatica)), ... 
@@ -49,7 +66,7 @@ ylabel('Frecuencia [KHz]');
 
 %% SUPERZOOM.
 figure, spectrogram(filtrada_automatica/max(abs(filtrada_automatica)), ... 
-    ESPECTRO_WINDOW, ESPECTRO_OVERLAP,ESPECTRO_NFFT, ...
+    ESPECTRO_WINDOW, ESPECTRO_OVERLAP,ESPECTRO_NFFT + 1000, ...
         FRECUENCIA_MUESTREO, 'yaxis');
 axis ([16.35 16.45...
      0 FREC_FINAL_SENIAL/1000]);
@@ -68,3 +85,5 @@ title('Espectrograma Señal filtrada');
 ylabel('Frecuencia [KHz]');
 xlabel('Tiempo [seg]');
 hold off;
+
+
